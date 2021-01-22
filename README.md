@@ -12,6 +12,7 @@ Instalacja
         1. login: admin, hasło: adminToMoc1234
         2. login: user_one, hasło: MocneHaslo0987
 
+Aplikacja dostepna jest pod adresem: https://localhost:8000
 Aby korzystać z aplikacji użytkownik musi być zalogowany, po zalogowaniu wyświetla się lista zadań nie wykonanych
 Zalogowany użytkownik może zarządzać swoimi listami, przełączać się na widoki z listami wykonanymi, do wykonania i wszystkimi, a także może tworzyć etykiety które można przypisywać do list. Dodana etykieta jest dostępna dla wszystkich użytkowników systemu. login:
 Tworząc nową listę użytkownik może przypisać wybrane etykiety, ustawić jej priorytet, nadać jej nazwę i dodać opis.
