@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Label;
 use App\Form\LabelType;
 use App\Repository\LabelRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @IsGranted("ROLE_USER")
  * @Route("/label")
  */
 class LabelController extends AbstractController
