@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edycja etykiety{% endblock %}
+
+{% block body %}
+    <h1>Edytuj etykietę</h1>
+
+    {{ include('label/_form.html.twig') }}
+    <div class="btn-group">
+    <a class="btn btn-secondary" href="{{ path('label_index') }}">Powrót do listy</a>
+    {{ include('label/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

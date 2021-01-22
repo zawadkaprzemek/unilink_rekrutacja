@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodaj/edytuj elementy listy{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+    {% for key,element in form.list_elements %}
+        <div class="row form-group">
+            {% for child in element.children %}
+                {% if(child.vars.label=='Element') %}
+                <div class="col-12 col-sm-3 col-form-label">
+                    {{ form_label(child,(key+1)~" "~child.vars.label) }}
+                </div>
+                <div class="col-12 col-sm-9">
+                    {{ form_widget(child) }}
+                </div>
+                {% else %}
+                    {{ form_widget(child) }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+{{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nowa etykieta{% endblock %}
+
+{% block body %}
+    <h1>Dodaj nową etykietę</h1>
+
+    {{ include('label/_form.html.twig') }}
+
+    <a class="btn btn-secondary" href="{{ path('label_index') }}">Powrót do listy</a>
+{% endblock %}

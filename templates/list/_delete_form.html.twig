@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('list_delete', {'id': list.id}) }}" onsubmit="return confirm('Na pewno chcesz usunąć tą listę?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ list.id) }}">
+    <button class="btn btn-dark btn-sm">Usuń listę</button>
+</form>

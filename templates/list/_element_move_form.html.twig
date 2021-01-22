@@ -1,0 +1,11 @@
+<form method="post" action="{{ path('list_element_move', {'sort': element.sort,'parent_id': element.list.id, 'type': type}) }}">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="_token" value="{{ csrf_token('patch' ~ element.id) }}">
+    <button class="btn btn-outline-primary btn-sm">
+        {% if type == 'up'%}
+            Przesuń wyżej
+        {% else %}
+            Przesuń niżej
+        {% endif %}
+    </button>
+</form>

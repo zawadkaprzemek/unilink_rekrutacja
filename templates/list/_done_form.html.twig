@@ -1,0 +1,11 @@
+<form method="post" action="{{ path('list_make_done', {'id': list.id}) }}" onsubmit="return confirm('Na pewno?');">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="_token" value="{{ csrf_token('patch' ~ list.id) }}">
+    <button class="btn btn-success btn-sm">
+        {% if list.done %}
+            Oznacz jako nie wykonane
+        {% else %}
+            Oznacz jako wykonane
+        {% endif %}
+    </button>
+</form>

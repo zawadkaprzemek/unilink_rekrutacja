@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('list_element_make_done_all', {'id': list.id}) }}" onsubmit="return confirm('Na pewno?');">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="_token" value="{{ csrf_token('patch' ~ list.id) }}">
+    <button class="btn btn-success btn-sm mb-2">
+            Oznacz wszystkie jako nie wykonane
+    </button>
+</form>

@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('label_delete', {'id': label.id}) }}" onsubmit="return confirm('Na pewno chcesz usunąć tą etykietę?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ label.id) }}">
+    <button class="btn btn-dark">Usuń</button>
+</form>

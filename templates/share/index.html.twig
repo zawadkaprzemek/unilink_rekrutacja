@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ list.name }}{% endblock %}
+
+{% block body %}
+    <h1>{{ list.name }}</h1>
+
+    <p class="font-weight-bold">Opis:</p>
+    <p>{{ list.description }}</p>
+    <p>Priorytet: {{ list.priority|list_priority }}</p>
+    {% if list.labels|length>0 %}
+        <div class="w-100 mb-2">
+            {% for label in list.labels %}
+                <span class="badge badge-info">{{ label.name }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <p>
+        {% if list.done %}
+            Wykonane
+        {% else %}
+            W trakcie wykonywania
+        {% endif %}
+    </p>
+
+    {% if elements|length>0 %}
+        <ul class="list-group mb-2">
+            {% for key,element in elements%}
+                <li class="list-group-item d-flex">
+                    <p class="mb-0 mr-2">{{ element.content }} {% if element.done %}- wykonane{% endif %}</p>
+                </li>
+            {% endfor%}
+        </ul>
+    {% endif %}
+{% endblock %}

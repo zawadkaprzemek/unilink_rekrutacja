@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Moje zadania do zrobienia{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1>Moje zadania</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Data dodania</th>
+            <th>Piorytet</th>
+            <th>Status</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for list in lists %}
+            <tr>
+                <td><a href="{{ path('list_show',{id:list.id}) }}">{{ list.name }}</a></td>
+                <td>{{ list.createdAt|date('d/m/Y H:i')}}</td>
+                <td>{{ list.priority|list_priority }}</td>
+                <td>
+                    {% if list.elementsDoneStatus %}
+                    {{ include('list/_done_form.html.twig') }}
+                        {% else %}
+                        Nie można zakończyć listy
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a href="{{ path('list_edit',{id:list.id}) }}" class="btn btn-secondary">Edytuj</a>
+                        {{ include('list/_delete_form.html.twig') }}
+                    </div>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="4">Brak wyników</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_new_list') }}">Dodaj nowe zadanie</a>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Moje zadania do zrobienia{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1>Moje zadania</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Data dodania</th>
+            <th>Termin wykonania</th>
+            <th>Etykiety</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for list in lists %}
+            <tr>
+                {{ dump(list) }}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Brak wyników</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_new_list') }}">Dodaj nowe zadanie</a>
+{% endblock %}

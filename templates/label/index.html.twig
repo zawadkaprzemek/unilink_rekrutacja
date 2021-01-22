@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista etykiet{% endblock %}
+
+{% block body %}
+    <h1>Lista etykiet</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Etykieta</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for label in labels %}
+            <tr>
+                <td>{{ label.id }}</td>
+                <td>{{ label.name }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                    <a class="btn-primary btn" href="{{ path('label_show', {'id': label.id}) }}">Pokaż</a>
+                    <a class="btn btn-secondary" href="{{ path('label_edit', {'id': label.id}) }}">Edytuj</a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Brak wyników</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('label_new') }}">Dodaj nową etykietę</a>
+{% endblock %}

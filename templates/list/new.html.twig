@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nowe zadanie{% endblock %}
+
+{% block body %}
+    <h1>Dodaj nową liste</h1>
+
+    {{ include('list/_form.html.twig') }}
+
+    <a class="btn btn-secondary" href="{{ path('list_my') }}">Powrót do listy</a>
+{% endblock %}

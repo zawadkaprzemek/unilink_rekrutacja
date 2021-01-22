@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ list.name }}{% endblock %}
+
+{% block body %}
+    <h1>{{ list.name }}</h1>
+
+    <p class="font-weight-bold">Opis:</p>
+    <p>{{ list.description }}</p>
+    <p>Priorytet: {{ list.priority|list_priority }}</p>
+    {% if list.labels|length>0 %}
+        <div class="w-100 mb-2">
+            {% for label in list.labels %}
+                <span class="badge badge-info">{{ label.name }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <p>
+        {% if list.done %}
+            Wykonane
+        {% else %}
+            {% if list.elementsDoneStatus %}
+                {{ include('list/_done_form.html.twig') }}
+            {% else %}
+                Zakończ wszystkie elementy listy aby móc zakończyć listę
+            {% endif %}
+        {% endif %}
+    </p>
+    <p>
+        Link do udostępnienia: <a href="{{ path('share_list',{hashId:list.hashId}) }}" target="_blank">{{ url('share_list',{hashId:list.hashId}) }}</a>
+    </p>
+
+    {% if elements|length>0 %}
+    <ul class="list-group mb-2">
+        {% for key,element in elements%}
+        <li class="list-group-item d-flex">
+            <p class="mb-0 mr-2">{{ element.content }}</p>
+            <div class="btn-group btn-group-sm">
+                {{ include('list/_element_done_form.html.twig') }}
+                {% if key>0 %}
+                    {{ include('list/_element_move_form.html.twig',{type:'up'}) }}
+                {% endif %}
+                {% if (key+1)<elements|length %}
+                    {{ include('list/_element_move_form.html.twig',{type:'down'}) }}
+                {% endif %}
+                {{ include('list/_element_delete_form.html.twig') }}
+            </div>
+
+        </li>
+        {% endfor%}
+    </ul>
+{% if list.elementsDoneStatus == false %}
+    {{ include('list/_element_done_all_form.html.twig') }}
+    {% endif %}
+    {% endif %}
+
+<div class="btn-group btn-group-sm">
+    <a class="btn btn-primary" href="{{ path('list_my') }}">Powrót do listy</a>
+
+    <a class="btn btn-secondary" href="{{ path('list_edit', {'id': list.id}) }}">Edycja</a>
+    <a class="btn btn-outline-primary" href="{{ path('list_edit_elements', {'id': list.id}) }}">Dodaj/Edytuj elementy listy</a>
+    {{ include('list/_delete_form.html.twig') }}
+</div>
+
+{% endblock %}
